@@ -10,14 +10,34 @@
 
 
 ## Installation:
-git clone https://github.com/ChefSI/AIoTU.git
+<!-- git clone https://github.com/ChefSI/AIoTU.git
 pip install -r requirements.txt
 python manage.py makemigrations
 python manage.py migrate
-python manage.py createsuperuser
+python manage.py createsuperuser -->
+
+## Installation:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ChefSI/AIoTU.git
+
+2. Install the project dependencies:
+    pip install -r requirements.txt
+
+3. Apply database migrations:
+   python manage.py makemigrations
+
+4. Perform the migrations:
+   python manage.py migrate
+
+5. Create a superuser (admin) account:
+   python manage.py createsuperuser
+
 
 ## License:
-Our project is under the MIT license.
+
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## USSD Service
 [![Screenshot](./USSD1.PNG)]
