@@ -1,7 +1,10 @@
 # AIoTU
 [![Screenshot](./rimagro.PNG)]
+[![Screenshot](./admin.PNG)]
+[![Screenshot](./USSD1.PNG)]
 ## Descriptio
-**bold** AIoTU is a platform designed to manage farms using AI and IoT, providing farmers with real-time climate data from both OpenWeather APIs and installed sensors. Additionally, it integrates USSD services with the help of Africa's Talking to assist farmers in areas where there is no internet connection, allowing them to benefit from our services.
+
+**AIoTU** is a platform designed to manage farms using AI and IoT, providing farmers with real-time climate data from both OpenWeather APIs and installed sensors. Additionally, it integrates USSD services with the help of Africa's Talking to assist farmers in areas where there is no internet connection, allowing them to benefit from our services.
 
 [![Screenshot](images/admin.PNG)]
 [![Screenshot](images/login.PNG)]
