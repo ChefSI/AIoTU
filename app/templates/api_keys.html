@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include "head_part.html" %}
+  <!-- Custom styles for this page -->
+  <script>
+    function toggleApiKeyVisibility() {
+        var apiKeyInput = document.getElementById('api-key');
+        var apiKeyIcon = document.getElementById('api-key-icon');
+
+        if (apiKeyInput.type === 'text') {
+            apiKeyInput.type = 'password';
+            apiKeyIcon.classList.remove('fa-eye-slash');
+            apiKeyIcon.classList.add('fa-eye');
+        } else {
+            apiKeyInput.type = 'text';
+            apiKeyIcon.classList.remove('fa-eye');
+            apiKeyIcon.classList.add('fa-eye-slash');
+        }
+    }
+
+    function toggleApiSecretVisibility() {
+        var apiSecretInput = document.getElementById('api-secret');
+        var apiSecretIcon = document.getElementById('api-secret-icon');
+
+        if (apiSecretInput.type === 'text') {
+            apiSecretInput.type = 'password';
+            apiSecretIcon.classList.remove('fa-eye-slash');
+            apiSecretIcon.classList.add('fa-eye');
+        } else {
+            apiSecretInput.type = 'text';
+            apiSecretIcon.classList.remove('fa-eye');
+            apiSecretIcon.classList.add('fa-eye-slash');
+        }
+    }
+</script>
+
+<style>
+    .api-keys {
+        margin-top: 20px;
+    }
+
+    .api-keys .form-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .api-keys .form-group label {
+        flex: 0 0 150px;
+        text-align: right;
+        margin-right: 10px;
+    }
+
+    .input-group-prepend span {
+        cursor: pointer;
+    }
+</style>
+</head>
+
+<body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        {% include "sidebar_part.html" %}
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+            {% include "topbar_part.html" %}
+                <!-- Begin Page Content -->
+                <div class="container-fluid text-center justify-content-center">
+                    <!-- -->
+                            <h1>Your API Key</h1>
+                            {% if api_key %}
+                            <div class="api-keys">
+                                <div class="form-group">
+                                    <label for="api-key">API Key:</label>
+                                    <input type="password" id="api-key" class="form-control" value="{{ api_key }}" readonly>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="show-api-key" onclick="toggleApiKeyVisibility()">
+                                            <i id="api-key-icon" class="fas fa-eye"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="api-secret">API Secret:</label>
+                                    <input type="password" id="api-secret" class="form-control" value="{{ api_secret }}" readonly>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="show-api-secret" onclick="toggleApiSecretVisibility()">
+                                            <i id="api-secret-icon" class="fas fa-eye"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <form method="POST" action="">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary">Generate New API Key</button>
+                            </form>
+                            {% else %}
+                                <form method="POST" action="">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary">Generate API Key</button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- End of Main Content -->
+          {% include "footer_part.html" %}
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    {% include "modals_and_scripts_part.html" %}
+    <!-- Page level plugins -->
+    <script src="/static/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/static/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/static/js/demo/datatables-demo.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/static/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/static/js/demo/chart-area-demo.js"></script>
+    <script src="/static/js/demo/chart-pie-demo.js"></script>
+
+</body>
+
+</html>

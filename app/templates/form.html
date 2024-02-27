@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container text-center justify-content-center mt-3 mb-3">
+  <div class="about-section mt-3 mb-5 shadow">
+    <!DOCTYPE html>
+
+    <h1>Rice Yield Prediction</h1>
+    <form method="POST" action="{% url 'predict_yield' %}">
+        {% csrf_token %}
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" required>
+        <br>
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" required>
+        <br>
+        <button type="submit">Predict Yield</button>
+    </form>
+
+    <!-- <form method="POST" action="{% url 'predict_yield' %}">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="humidity">Humidity:</label>
+          <input type="text" class="form-control" id="humidity" name="humidity" required>
+        </div>
+        <div class="form-group">
+            <label for="wind_speed">Wind Speed:</label>
+            <input type="text" class="form-control" id="wind_speed" name="wind_speed" required>
+          </div>
+        <div class="form-group">
+          <label for="temperature">Temperature:</label>
+          <input type="text" class="form-control" id="temperature" name="temperature" required>
+        </div>
+        <div class="form-group">
+          <label for="precipitation">Precipitation:</label>
+          <input type="text" class="form-control" id="precipitation" name="precipitation" required>
+        </div>
+        <div class="form-group">
+          <label for="cultivated_areas">Cultivated Areas:</label>
+          <input type="text" class="form-control" id="cultivated_areas" name="cultivated_areas" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Predict</button>
+      </form>       -->
+  </div>
+</div>
+
+{% endblock %}

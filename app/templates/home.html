@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container text-center justify-content-center mt-5 mb-5">
+      <h3 class="text-center mb-5"> You are Welcome To Our Rim Agricole Platform </h3>
+      <div class="row justify-content-center">
+          <div class="card text-center">
+            <div class="card-header"> Rim Agricole </div>
+            <div class="card-body">
+              <h5 class="card-title"> Check the weather status </h5>
+              <!-- -->
+                  <nav class="navbar navbar-expand-lg bg-success">
+                    <form method="post" class="col-md" id="search_form">
+                      {% csrf_token %}
+                      <div class=" input-group">
+                      <input type="text" class="form-control" name="city" id="tags" placeholder="Choose Your City ...">
+                      <div class="input-group-btn">
+                        <button id ="get-data" type="submit" class="btn btn-success">Search</button>
+                      </div>
+                      </div>
+                      <form>
+                  </nav>
+                <!-- </div> -->
+              </div>
+              <br> <br>
+              <div class="row">
+                <div class="col d-flex justify-content-center" >
+                  <div id="response_list" class=" card text-white bg-light mb-6">
+                  </div>
+                </div>
+            </div>
+            <div class="card-footer text-success"> Rim Agricole </div>
+          </div>
+        <div class="py-5 text-center">
+          <h3 class="text-center"> Our Partners </h3>
+          <div class="row justify-content-center mt-3 mb-3">
+            <div class="col-lg-4 mb-3 mt-3">
+                <div class="card mx-auto" style="width: 100%;">
+                    <img src="https://www.univ-nkc.mr/assets/images/logo.png" class="card-img-top" alt="UN">
+                    <div class="card-body">
+                      <h6 class="card-title"> Nouakchott University </h6>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-lg-4 mb-3 mt-3">
+                <div class="card mx-auto" style="width: 100%;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTblGnr8CgS4HiNVvwiZiRbfrlbvu7QkiC7fw&usqp=CAU" class="card-img-top" alt="Paris 8">
+                    <div class="card-body">
+                      <h6 class="card-title"> University of Paris 8 </h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-3 mt-3">
+                <div class="card mx-auto" style="width: 100%;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVS1GkstVcn40A6ub1y_qXuMOuFJl9bSV4iQ&usqp=CAU" class="card-img-top" alt="Cisco">
+                    <div class="card-body">
+                      <h6 class="card-title"> CISCO  </h6>
+                    </div>
+                  </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    
+<script>
+  button = document.getElementById("get-data");
+  button.addEventListener("click", getWeatherData);
+
+function getWeatherData(e) {
+  const newXHRRequest = new XMLHttpRequest();
+  const name_input = document.getElementById("tags").value;
+
+  newXHRRequest.open(
+    "GET",
+    'https://api.openweathermap.org/data/2.5/weather?q='+ name_input + '&units=metric&APPID=3eb3e2e6a06817b3e14b2862ef367bac',
+    true
+  );
+
+  newXHRRequest.onload = function () {
+    if (this.status === 200) {
+      const weather_data = JSON.parse(this.responseText);
+      var output = weather_data;
+    }
+    else {
+        output = "No data";
+      }
+      console.log(output)
+
+      document.getElementById("response_list").innerHTML = `<h4 id="city_name"><span class="badge badge-success" id="span_name" >Name of City :</span> ${output.name}</h4>
+        <h4 id="country_code"><span class="badge badge-success">Country Code :</span> ${output.sys.country} </h4>
+        <h4 id ="coordinates"><span class="badge badge-success">Coordinates [ longitude, latitude ] :</span> ${output.coord.lon }, ${ output.coord.lat}</h4>
+        <h4 id="temperature"><span class="badge badge-success">Temperature in Celsius :</span> ${output.main.temp}</h4>
+        <h4 id="pressure"><span class="badge badge-success">Pressure :</span> ${ output.main.pressure} hPa </h4>
+        <h4 id="timezone"><span class="badge badge-success">Timezone :</span> ${output.timezone /3600}hr(s) away from UTC</h4>
+        <h4 id="humidity"><span class="badge badge-success">Humidity : </span> ${output.main.humidity}%</h4>
+        <h4 id="forcast"><span class="badge badge-success">Forecast : </span>  <img
+            src="http://openweathermap.org/img/w/${output['weather']['0']['icon']}.png" alt="Image" style="width:70px"></h4>
+        <h4 id="description"><span class="badge badge-success">Description : </span> ${output['weather']['0']['description']} </h4>
+`;
+  };
+  newXHRRequest.send();
+  e.preventDefault();  
+}
+</script>
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container text-center justify-content-center mt-3 mb-3">
+    <div class="justify-content-sm-center"> 
+        <a href="/create" type="button" class="btn btn-primary btn-lg px-4 gap-3">Add Data</a>
+        <a href="/showdata"  type="button" class="btn btn-primary btn-lg px-4 gap-3">Show Data</a>
+        <a href="/show_data" type="button" class="btn btn-primary btn-lg px-4 gap-3">Filtre Data</a>
+        <a href="https://apps.sentinel-hub.com/eo-browser/?zoom=20&lat=16.51273&lng=-15.81168&themeId=DEFAULT-THEME&toTime=2023-04-09T16%3A27%3A37.526Z" type="button" class="btn btn-outline-secondary btn-lg px-4">Sentinel</a>
+    </div>
+  <div class="about-section mt-3 mb-5">
+    <h1 class="h3">Weather Data</h1>
+    <img src="data:image/png;base64,{{ image }}" alt="Weather Data" class="img-fluid">
+ </div>
+ <div class="about-section mt-3 mb-5">
+	<h1 class="h3">Correlation</h1>
+    <div class="row justify-content-center">
+        <div class="col-lg-4">
+            <div class="card mx-auto" style="width: 18rem;">
+                <table>
+                    {% for index, row in correlation.items %}
+                        <tr>
+                            {% for column, value in row.items %}
+                                <td>{{ value|floatformat:2 }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+{% endblock %}

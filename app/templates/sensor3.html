@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include "head_part.html" %}
+  <!-- Custom styles for this page -->
+  <link href="/static/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        {% include "sidebar_part.html" %}
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+            {% include "topbar_part.html" %}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <a href="{% url 'prediction' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-brain fa-sm text-white-50"></i>Predict Rice Yield</a>
+                    </div>
+                    <!-- Content Row -->
+                    <div class="row justify-content-center">
+                        <!-- Total Transactions Card Example -->
+                        <div class="col-lg-2">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 text-center">Humidity</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800 text-center"><span id="humidity">{{ last_humidity }} %</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cashin Transactions Card Example -->
+                        <div class="col-lg-2">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1 text-center">TVOC</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800 text-center"><span id="tvoc">{{ last_tvoc }} µg/m³</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Cashout Transactions Card Example -->
+                        <div class="col-lg-2">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1 text-center"> Temperature </div>
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 text-center"><span id="temperature">{{ last_temperature }} °C</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Transactions Card Example -->
+                        <div class="col-lg-2">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1 text-center">ECO2</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800 text-center"><span id="eco2">{{ last_eco2 }} kg/m³</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <!-- Cashout Transactions Card Example -->
+                         <div class="col-lg-2">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1 text-center"> Air Quality </div>
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 text-center"><span id="quality">{{ last_air_quality }} AQI</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Transactions Card Example -->
+                        <div class="col-lg-2">
+                            <div class="card border-left-secondary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1 text-center">Noise</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800 text-center"><span id="noise">{{ last_noise }} dBA</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid mt-3 mb-3">
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="container">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary text-center">Data Records</h6>
+                            </div>
+                            <div class="card-body">
+                                <!--  -->
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center justify-content-center" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>TVOC</th>
+                                                <th>ECO2</th>
+                                                <th>Noise</th>
+                                                <th>Humidity</th>
+                                                <th>Temperature</th>
+                                                <th>Air Quality</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>TVOC</th>
+                                                <th>ECO2</th>
+                                                <th>Noise</th>
+                                                <th>Humidity</th>
+                                                <th>Temperature</th>
+                                                <th>Air Quality</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            {% for data in datas %}
+                                            <tr>
+                                                <td>{{ data.date }}</td>
+                                                <td>{{ data.tvoc }}</td>
+                                                <td>{{ data.eco2 }}</td>
+                                                <td>{{ data.noise }}</td>
+                                                <td>{{ data.humidity }}</td>
+                                                <td>{{ data.temperature }}</td>
+                                                <td>{{ data.air_quality }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+            </div>
+            <!-- End of Main Content -->
+
+          {% include "footer_part.html" %}
+
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    {% include "modals_and_scripts_part.html" %}
+    <!-- Page level plugins -->
+    <script src="/static/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/static/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/static/js/demo/datatables-demo.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/static/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/static/js/demo/chart-area-demo.js"></script>
+    <script src="/static/js/demo/chart-pie-demo.js"></script>
+
+    <!-- Update Values -->
+    <script>
+        function updateData() {
+            $.ajax({
+                url: "",
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    $('#tvoc').text(response.last_tvoc);
+                    $('#eco2').text(response.last_eco2);
+                    $('#noise').text(response.last_noise);
+                    $('#humidity').text(response.last_humidity);
+                    $('#temperature').text(response.last_temperature);
+                    $('#quality').text(response.last_indoorAirQuality);
+                }
+            });
+        }
+        // setTimeout(updateData, 2000);
+        setTimeout(updateData, 900000);
+    </script>
+
+</body>
+
+</html>

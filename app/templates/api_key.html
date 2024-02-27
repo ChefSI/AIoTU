@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head> -->
+<div class="container text-center">
+    <div class="row mb-5 mt-5 text-center shadow">
+        <h1>Your API Keys</h1>
+        <div class="api-keys">
+            <div class="form-group">
+                <label for="api-key">API Key:</label>
+                <div class="input-group">
+                    <input type="text" id="api-key" class="form-control" value="{{ api_key }}" readonly>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="show-api-key" onclick="toggleApiKeyVisibility()">
+                            <i id="api-key-icon" class="fas fa-eye"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="api-secret">API Secret:</label>
+                <div class="input-group">
+                    <input type="text" id="api-secret" class="form-control" value="{{ api_secret }}" readonly>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="show-api-secret" onclick="toggleApiSecretVisibility()">
+                            <i id="api-secret-icon" class="fas fa-eye"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Generate API Key</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function toggleApiKeyVisibility() {
+        var apiKeyInput = document.getElementById('api-key');
+        var apiKeyIcon = document.getElementById('api-key-icon');
+
+        if (apiKeyInput.type === 'text') {
+            apiKeyInput.type = 'password';
+            apiKeyIcon.classList.remove('fa-eye-slash');
+            apiKeyIcon.classList.add('fa-eye');
+        } else {
+            apiKeyInput.type = 'text';
+            apiKeyIcon.classList.remove('fa-eye');
+            apiKeyIcon.classList.add('fa-eye-slash');
+        }
+    }
+
+    function toggleApiSecretVisibility() {
+        var apiSecretInput = document.getElementById('api-secret');
+        var apiSecretIcon = document.getElementById('api-secret-icon');
+
+        if (apiSecretInput.type === 'text') {
+            apiSecretInput.type = 'password';
+            apiSecretIcon.classList.remove('fa-eye-slash');
+            apiSecretIcon.classList.add('fa-eye');
+        } else {
+            apiSecretInput.type = 'text';
+            apiSecretIcon.classList.remove('fa-eye');
+            apiSecretIcon.classList.add('fa-eye-slash');
+        }
+    }
+</script>
+
+<style>
+    .api-keys {
+        margin-top: 20px;
+    }
+
+    .api-keys .form-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .api-keys .form-group label {
+        flex: 0 0 150px;
+        text-align: right;
+        margin-right: 10px;
+    }
+
+    .input-group-prepend span {
+        cursor: pointer;
+    }
+</style>
+
+{% endblock %}

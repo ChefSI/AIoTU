@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container text-center">
+<div class="row mb-5 mt-5 text-center shadow">
+    <!--Section: Contact v.2-->
+<section class="mb-5 mt-5">
+  <div class="concainer p-3 text-center">
+  <!--Section heading-->
+  <h2 class="h1-responsive font-weight-bold text-center my-4"> Our Contacts </h2>
+  <!--Section description-->
+  <p class="text-center w-responsive mx-auto mb-5"> Thank you for visiting our website, you can leave us a message here.</p>
+  <div class="row">
+      <!--Grid column-->
+      <div class="col-md-9 mb-md-5 shadow">
+          <form id="contact-form" name="contact-form" action="https://formsubmit.co/41f3cf9cf590f81cb4396d56955f95d3" method="POST">
+              <!--Grid row-->
+              <div class="row">
+                  <!--Grid column-->
+                  <div class="col-md-6 mb-3 mt-3">
+                      <div class="md-form mb-0">
+                          <label for="name" class=""> Your Name </label>
+                          <input type="text" id="name" name="name" class="form-control">
+                      </div>
+                  </div>
+                  <!--Grid column-->
+                  <!--Grid column-->
+                  <div class="col-md-6 mb-3 mt-3">
+                      <div class="md-form mb-0">
+                          <label for="email" class=""> Your Email</label>
+                          <input type="text" id="email" name="email" class="form-control">
+                      </div>
+                  </div>
+                  <!--Grid column-->
+              </div>
+              <!--Grid row-->
+              <!--Grid row-->
+              <div class="row">
+                  <div class="col-md-12 mb-3">
+                      <div class="md-form mb-0">
+                        <label for="subject" class=""> Message Subject </label>
+                        <input type="text" id="subject" name="subject" class="form-control">
+                      </div>
+                  </div>
+              </div>
+              <!--Grid row-->
+              <!--Grid row-->
+              <div class="row">
+                  <!--Grid column-->
+                  <div class="col-md-12 mb-3">
+                      <div class="md-form">
+                        <label for="message"> Message Body </label>
+                        <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
+                      </div>
+                  </div>
+              </div>
+              <!--Grid row-->
+          </form>
+          <div class="text-center text-center mb-3">
+              <a class="btn" style="color: white; background-color: #3714fd;"type="submit" id="header-links" onclick="document.getElementById('contact-form').submit();"> Send </a>
+          </div>
+          <div class="status"></div>
+      </div>
+      <!--Grid column-->
+      <!--Grid column-->
+      <div class="col-md-3 text-center">
+          <ul class="list-unstyled mb-0">
+              <li><i class="fas fa-map-marker-alt fa-2x"></i>
+                  <p> TVZ, Nouakchott, Mauritanie </p>
+              </li>
+              <li><i class="fas fa-phone mt-4 fa-2x"></i>
+                  <p> + 222 37 47 69 83 </p>
+              </li>
+              <li><i class="fas fa-envelope mt-4 fa-2x"></i>
+                  <p> cheikhahmedtelmoud@gmail.com </p>
+              </li>
+          </ul>
+      </div>
+      <!--Grid column-->
+  </div>
+</div>
+</section>
+<!--Section: Contact v.2-->
+  </div>
+</div>
+{% endblock %}

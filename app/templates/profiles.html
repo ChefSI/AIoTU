@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include "head_part.html" %}
+  <!-- Custom styles for this page -->
+  <script>
+    function toggleApiKeyVisibility() {
+        var apiKeyInput = document.getElementById('api-key');
+        var apiKeyIcon = document.getElementById('api-key-icon');
+
+        if (apiKeyInput.type === 'text') {
+            apiKeyInput.type = 'password';
+            apiKeyIcon.classList.remove('fa-eye-slash');
+            apiKeyIcon.classList.add('fa-eye');
+        } else {
+            apiKeyInput.type = 'text';
+            apiKeyIcon.classList.remove('fa-eye');
+            apiKeyIcon.classList.add('fa-eye-slash');
+        }
+    }
+
+    function toggleApiSecretVisibility() {
+        var apiSecretInput = document.getElementById('api-secret');
+        var apiSecretIcon = document.getElementById('api-secret-icon');
+
+        if (apiSecretInput.type === 'text') {
+            apiSecretInput.type = 'password';
+            apiSecretIcon.classList.remove('fa-eye-slash');
+            apiSecretIcon.classList.add('fa-eye');
+        } else {
+            apiSecretInput.type = 'text';
+            apiSecretIcon.classList.remove('fa-eye');
+            apiSecretIcon.classList.add('fa-eye-slash');
+        }
+    }
+</script>
+
+<style>
+    .api-keys {
+        margin-top: 20px;
+    }
+
+    .api-keys .form-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .api-keys .form-group label {
+        flex: 0 0 150px;
+        text-align: right;
+        margin-right: 10px;
+    }
+
+    .input-group-prepend span {
+        cursor: pointer;
+    }
+</style>
+</head>
+
+<body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        {% include "sidebar_part.html" %}
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+            {% include "topbar_part.html" %}
+                <!-- Begin Page Content -->
+                <div class="container-fluid text-center mt-5 mb-5">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">{{ user.first_name }}'s Profile</div>
+                
+                                <div class="card-body">
+                                    {% if messages %}
+                                        <div class="alert alert-success">
+                                            {% for message in messages %}
+                                                {{ message }}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                
+                                    <form method="POST" action="{% url 'profile' %}">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="first_name">First Name</label>
+                                            <input type="text" id="first_name" name="first_name" class="form-control" value="{{ user.first_name }}" required>
+                                        </div>
+                
+                                        <div class="form-group">
+                                            <label for="last_name">Last Name</label>
+                                            <input type="text" id="last_name" name="last_name" class="form-control" value="{{ user.last_name }}" required>
+                                        </div>
+                
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="email" id="email" name="email" class="form-control" value="{{ user.email }}" required>
+                                        </div>
+                
+                                        <hr>
+                
+                                        <div class="form-group">
+                                            <label for="current_password">Current Password</label>
+                                            <input type="password" id="current_password" name="current_password" class="form-control" required>
+                                        </div>
+                
+                                        <div class="form-group">
+                                            <label for="new_password">New Password</label>
+                                            <input type="password" id="new_password" name="new_password" class="form-control" required>
+                                        </div>
+                
+                                        <div class="form-group">
+                                            <label for="confirm_password">Confirm Password</label>
+                                            <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+                                        </div>
+                
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- -->
+                            <!--  -->
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- End of Main Content -->
+          {% include "footer_part.html" %}
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    {% include "modals_and_scripts_part.html" %}
+    <!-- Page level plugins -->
+
+</body>
+
+</html>

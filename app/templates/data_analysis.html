@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container text-center justify-content-center mt-5 mb-5">
+      <h3 class="text-center mb-5"> Data Analysis For Meraki Data </h3>
+      <div class="row justify-content-center">
+        <div class="text-center">
+          <div class="row justify-content-center">
+            <div class="col-lg-6 mb-3 mt-3">
+                <div class="card mx-auto" style="width: 100%;">
+                    <img src="{{ trend_img }}" alt="Trend" class="brand_img" height="100%" width="100%">
+                    <div class="card-body">
+                      <h6 class="card-title"> Trend Graph </h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-3 mt-3">
+                <div class="card mx-auto" style="width: 100%;">
+                    <img src="{{ noise_img }}" alt="Seasonality" class="brand_img" height="100%" width="100%">
+                    <div class="card-body">
+                      <h6 class="card-title"> Seasonality  </h6>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-6 mb-3 mt-3">
+                <div class="card mx-auto" style="width: 100%;">
+                    <img src="{{ noise_img }}" alt="Noise" class="brand_img" height="100%" width="100%">
+                    <div class="card-body">
+                      <h6 class="card-title"> Noise Graph </h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-3 mt-3">
+                <div class="card mx-auto" style="width: 100%;">
+                    <img src="{{ initial_values_img }}" alt="Initial Values" class="brand_img" height="100%" width="100%">
+                    <div class="card-body">
+                      <h6 class="card-title"> Initial Values  </h6>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-6 mb-3 mt-3">
+                <div class="card mx-auto" style="width: 100%;">
+                    <img src="{{ corr_matrix_img }}" alt="Correlation" class="brand_img" height="100%" width="100%">
+                    <div class="card-body">
+                      <h6 class="card-title"> Correlation Matrix </h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-3 mt-3">
+                <div class="card mx-auto" style="width: 100%;">
+                    <img src="{{ clusters_img }}" alt="Clusters" class="brand_img" height="100%" width="100%">
+                    <div class="card-body">
+                      <h6 class="card-title"> Clusters  </h6>
+                    </div>
+                  </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}
